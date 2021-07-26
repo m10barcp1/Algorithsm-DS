@@ -1,64 +1,37 @@
-
-#include <bits/stdc++.h>
-
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
-
+#include<bits/stdc++.h>
 using namespace std;
 
-typedef double ld;
-typedef long long ll;
-typedef vector<int> vi;
-typedef vector<ll> vll;
-typedef pair<int,int> II;
-
-const ld pi=2*acos(0);
-const int im = INT_MAX;
-const int in = INT_MIN;
-const int limit = 1e5+5;
-const ll M = 1e9+7;
-
-int main ()
-{
-    ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
-    int T;
-    cin>>T;
-    while(T--){
-        string s;
-        stack <II> a;
-        cin>>s;
-        int kt = 0;
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] == '(' && i == 0){
-                a.push(mp(i,2));
-                continue;
-            }
-            if(s[i] == '(' && s[i-1] == '-'){
-                a.push(mp(i,1));
-            }
-            else if(s[i] == '(' && s[i-1] != '-' && s[i-1] != '+'){
-                a.push(mp(i,2));
-            } 
-            else if(s[i] == '(' && s[i-1] == '+'){
-                a.push(mp(i,2));
-            }
-            else if(s[i] == ')'){
-                II tmp;
-                tmp = a.top();
-                if(tmp.se == 1) 
-                for(int j = tmp.fi+1; j < i; j++){
-                    if(s[j] == '+') s[j] = '-';
-                    else if(s[j] == '-') s[j] = '+';
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        long long n,k,a[100005];
+        cin>>n>>k;
+        long long run=0,id=0, check =0,check1=0;
+        for(int i =0;i<n;i++){
+            cin>>a[i];
+            if(a[i]==0)
+                check1=1;
+        }
+        if(k==0 &&check1==1 )
+            cout<<"YES"<<endl;
+        else if(k==0 && check1==0)
+            cout<<"NO"<<endl;
+        else {
+            for(int i =0;i<n;i++){
+                run+= a[i];
+                while(run- a[id] >=k){
+                    run-=a[id];
+                    id++;
                 }
-                a.pop();
+                if(run ==k ){
+                    cout<<"YES"<<endl;
+                    check =1;
+                    break;
+                }
             }
+            if(check ==0)
+                cout<<"NO"<<endl;
         }
-        for(int i = 0; i < s.size(); i++){
-            if(s[i] != '(' && s[i] != ')') cout<<s[i];
-        }
-        cout<<endl;
-   }
-    return 0;
+    }
 }

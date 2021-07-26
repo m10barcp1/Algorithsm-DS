@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n,m;
-bool chuaxet[1000];
 vector<int> v[1005];
 bool check[1005][1005];
 bool dfs(int s, int t){
@@ -10,16 +9,14 @@ bool dfs(int s, int t){
 	q.push(1);
 	vector<int> res;
 	res.push_back(1);
-	check[s][t] = false;
-	check[t][s] = false;
+	check[s][t] = false;	check[t][s] = false;
 	while(!q.empty()){
 		int t = q.top(); q.pop();
 		for ( int p = 0; p < v[t].size(); p++){
 			int k = v[t][p];
 			if(check[t][k]){
 				check[t][k] = false;
-				q.push(t);
-				q.push(k);
+				q.push(t); q.push(k);
 				res.push_back(k);
 				break;
 			}

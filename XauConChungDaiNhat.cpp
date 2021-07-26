@@ -11,6 +11,8 @@ int maxV(string a, string b){
 	return f[a.size()][b.size()];
 }
 
+AGGTAB
+GXTXAYB  
 void solve(){
 	string a,b;
 	cin >> a >> b;

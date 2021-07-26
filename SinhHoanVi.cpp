@@ -1,30 +1,38 @@
-#include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
-int n,c[10];
-void bandau(int n){
-    for ( int i = 1; i<=n; i++)
-        c[i] = i;
-}
-void in(int n){
-    for ( int i = 1; i<=n; i++)
-        cout << c[i];
-}
 
-void nhiphan(int n){
-    bandau(n);
-    bool ok = false;
-    while(!ok){
-        in(n);
-        sinh(n,ok);
-        cout << " ";
-    }
-    cout << endl;
+int a[100];
+int n;
+int Bool[100]={0};
+
+void inKQ()
+{
+	for(int i=1;i<=n;i++)
+	cout<<a[i];
+	cout<<" ";
 }
-int main(){
-    int t;
-    cin >> t;
-    while(t--){
-    	cin >> n;
-    	nhiphan(n);
+void Try(int i)
+{
+	for(int j=1;j<=n;j++){
+	  	if (!Bool[j]){
+			a[i]=j;
+			Bool [j]=1;
+			if(i==n)
+			inKQ();
+			else
+				Try(i+1);
+				Bool[j]=0;
+		}
 	}
+}
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--){
+	cin>>n;
+	Try(1);
+	cout<<endl;
+	}
+
 }

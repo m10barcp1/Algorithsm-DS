@@ -4,8 +4,9 @@ int n, m, u;
 vector<int> v[1005];
 bool chuaxet[1005];
 int start[100005],end[100005];
-vector< pair<int, int> > res;
-void bfs(int u){
+vector< pair<int, int> > res;// luu ket qua
+void dfs(int u){
+	//DuyetDFS, gan cac cap dinh 
 	int dem = 0;
 	stack<int> q;
 	q.push(u);
@@ -16,13 +17,13 @@ void bfs(int u){
 			int y = v[t][i];
 			if(chuaxet[y]){
 				chuaxet[y] = false;
-				q.push(t);
-				q.push(y);
+				q.push(t);	q.push(y);
 				res.push_back(make_pair(t,y));
 				break;
 			}
 		}
 	}
+	// Kiem tra xem co cay khung hay khong
 	bool kt = false;
 	for ( int i = 1; i<=n; i++){
 		if(chuaxet[i]) {
@@ -30,11 +31,11 @@ void bfs(int u){
 			break;
 		}
 	}
+	// khong co thi in -1
 	if(kt) {
 		cout << -1 << endl;
 		return;
-	}
-	else {
+	}else { // co thi in cac cap dinh thoa man tu danh sach res
 		for ( int i = 0; i<res.size(); i++){
 			cout << res[i].first << " " << res[i].second << endl;
 		}

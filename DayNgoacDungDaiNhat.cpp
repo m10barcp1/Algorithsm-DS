@@ -7,24 +7,18 @@ int main(){
 		string s;
 		cin >> s;
 		stack<char> v;
-		int temp = 0;
-		for ( int i = 0; i<s.length()-1;i++){
-			if(s[i] == '('){
-			v.push(s[i]);
-				if(s[i+1]!=v.top()) {
-					v.pop();
-					temp+=2;
-				}
-			}else if(v.empty()){
-				continue;
-			}else if(!v.empty()){
-				if(s[i]!=v.top()){
-					v.pop();
-					temp+=2;
-				}
+		int res = 0;
+		v.push(-1);
+		for ( int i = 0; i<s.length();i++){
+			if(s[i] == '(')
+			v.push(i);
+			else{
+				v.pop();
+				if(!v.empty()) res = max(res,i-v.top());
+				else v.push(i);
 			}
 		}
-		cout << temp << endl;
+		cout << res << endl;
 	}
 }
 

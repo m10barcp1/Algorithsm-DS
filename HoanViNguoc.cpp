@@ -10,6 +10,7 @@ void init(){
     Stop=0;
 }
 void output(){
+	cout << n << endl;
     for (int i = 0; i < n; i++)
     {
         cout<<a[i];
